@@ -1,0 +1,50 @@
+<script src="lib/angular.js"></script>
+<script src="lib/Chart.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/yql-service.js"></script>
+<script src="js/controllers/handleSymbols.js"></script>
+<script src="js/controllers/handleYql.js"></script>
+
+<html ng-app=JaneFrame>
+<head>
+	<title>JaneFrame &lt;BETA&gt;</title>
+</head>
+
+<body>
+
+	<!-- Just dump a test of buildSymbolList -->
+	<div class="container" data-ng-controller="buildSymbolList">
+		<h3>Stock Symbols</h3>
+		<ul>
+			<li data-ng-repeat="s in symbols">
+				{{s.name}}
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- View returned yql data -->
+	<div class="container" data-ng-controller="yqlHistoricalData">
+		<h3>Stock data</h3>
+		<label for="start">Start date:</label><input name="start" type="text" ng-model="startDate" ng-change="getData()"><br />
+		<label for="end">End date:</label><input name="end" type="text" ng-model="endDate" ng-change="getData()">
+		<table>
+			<thead>
+				<th>Symbol</th>
+				<th>Date</th>
+				<th>Open</th>
+				<th>Close</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.Symbol}}</td>
+					<td>{{item.Date}}</td>
+					<td>{{item.Open}}</td>
+					<td>{{item.Close}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
